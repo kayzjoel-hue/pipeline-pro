@@ -66,3 +66,23 @@ Thumbs.db
 .webdev/
 
 .vercel
+
+# --- local/dev junk ---
+.env
+*.log
+*.err
+*.out
+
+# --- package manager caches ---
+.pnpm-store/
+
+# --- build/artifacts ---
+dist/
+.expo/
+
+# --- dependencies ---
+node_modules/
+
+# --- vercel local metadata ---
+.vercel/
+
