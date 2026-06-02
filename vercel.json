@@ -3,8 +3,7 @@
   "outputDirectory": "dist",
   "installCommand": "pnpm install --frozen-lockfile",
   "env": {
-    "NODE_ENV": "production",
-    "DATABASE_URL": ""
+    "NODE_ENV": "production"
   },
   "functions": {
     "dist/index.js": {
