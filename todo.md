@@ -100,3 +100,12 @@ This document reflects the repo as it exists now, not the original roadmap.
 - [x] Basic auth/session plumbing
 - [x] Settings UI
 - [x] Branding and theme base
+
+## Deployment & Cleanup
+
+- [ ] Deploy backend to Railway
+- [ ] Deploy frontend to Vercel/Expo web from `app/`
+- [ ] Set `EXPO_PUBLIC_API_BASE_URL` to the Railway backend endpoint
+- [ ] Verify backend `/api/health` endpoint
+- [ ] Confirm CORS and API request flow from frontend
+- [ ] Consolidate desktop project folders into active vs archive categories

@@ -110,23 +110,3 @@ rl.question(
     }
   },
 );
-
-import { useFonts } from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
-import { useEffect } from "react";
-
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const [loaded] = useFonts({
-    MaterialCommunityIcons: require("@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"),
-  });
-
-  useEffect(() => {
-    if (loaded) SplashScreen.hideAsync();
-  }, [loaded]);
-
-  if (!loaded) return null;
-
-  return <YourApp />;
-}

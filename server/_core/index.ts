@@ -69,10 +69,19 @@ async function startServer() {
   );
 
   const preferredPort = parseInt(process.env.PORT || "3000");
-  const port = await findAvailablePort(preferredPort);
+  let port: number;
 
-  if (port !== preferredPort) {
-    console.log(`Port ${preferredPort} is busy, using port ${port} instead`);
+  if (process.env.PORT) {
+    port = preferredPort;
+    const available = await isPortAvailable(port);
+    if (!available) {
+      throw new Error(`Port ${port} is not available. Railway requires the app to bind to process.env.PORT.`);
+    }
+  } else {
+    port = await findAvailablePort(preferredPort);
+    if (port !== preferredPort) {
+      console.log(`Port ${preferredPort} is busy, using port ${port} instead`);
+    }
   }
 
   server.listen(port, () => {

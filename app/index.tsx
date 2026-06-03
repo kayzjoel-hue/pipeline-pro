@@ -122,7 +122,12 @@ export default function IndexScreen() {
 
               <View
                 className="bg-white border border-[#e4e1dc] rounded-2xl px-6 py-5 flex-row items-center justify-center gap-6 mt-14"
-                style={{boxshadow: "0px 10px 30px rgba(0,0,0,0,08)",}}
+                style={{
+                  shadowColor: "#0e0f11",
+                  shadowOpacity: 0.08,
+                  shadowRadius: 18,
+                  shadowOffset: { width: 0, height: 10 },
+                }}
               >
                 <StatBlock value="4" label="Pipeline stages" />
                 <View className="w-px h-9 bg-[#e4e1dc]" />

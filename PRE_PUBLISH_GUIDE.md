@@ -497,7 +497,35 @@ const syncToBackend = async () => {
 
 ---
 
-## Part 9: Quick Reference
+## Part 9: Deployment Notes
+
+### Railway backend config
+- Build: `pnpm build`
+- Start: `pnpm start` (or `node dist/index.js` after building)
+- Env:
+  - `DATABASE_URL=...` (Railway database connection string)
+  - `NODE_ENV=production`
+  - `OAUTH_SERVER_URL=...`
+- Port:
+  - Backend must bind to `process.env.PORT`
+  - Example: `const port = Number(process.env.PORT ?? 3000)`
+
+### Two important notes
+1. Ensure the backend binds to Railway’s port.
+   - Railway sets `PORT`; do not hardcode `3000`.
+   - The app must listen on `process.env.PORT`.
+2. DB migrations workflow.
+   - Run migrations locally before deploy with `pnpm db:push`.
+   - `db:push` is defined as `drizzle-kit generate && drizzle-kit migrate`.
+   - If you want automated migrations, configure it explicitly in Railway; it is not automatic by default.
+
+### Frontend hosting
+- Use Vercel or Expo hosting for the frontend only.
+- Set `EXPO_PUBLIC_API_BASE_URL` to the Railway backend URL, e.g. `https://<railway-service>.railway.app/api/trpc`.
+
+---
+
+## Part 10: Quick Reference
 
 ### Key Files
 
