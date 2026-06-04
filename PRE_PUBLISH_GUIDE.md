@@ -521,6 +521,7 @@ const syncToBackend = async () => {
 
 ### Frontend hosting
 - Use Vercel or Expo hosting for the frontend only.
+- Deploy from the repository root and serve the static `dist/` export.
 - Set `EXPO_PUBLIC_API_BASE_URL` to the Railway backend URL, e.g. `https://<railway-service>.railway.app/api/trpc`.
 
 ---

@@ -65,9 +65,9 @@ This separation provides:
 ### Setup
 
 1. **Prepare frontend config**
-   - Set the Vercel project Root Directory to `app/` in the Vercel UI.
-   - `app/vercel.json` is front-end specific and should only be used for web hosting.
-   - The backend is not deployed from a root `vercel.json` file.
+   - Set the Vercel project Root Directory to the repository root.
+   - Use the root `vercel.json` as the source of truth for frontend deployment.
+   - The Expo web export writes static output to `dist/`.
 
 2. **Set environment variable**
    ```bash
@@ -79,16 +79,8 @@ This separation provides:
    > Note: Frontend env vars must start with `EXPO_PUBLIC_` to be included in the browser bundle.
 
 3. **Deploy frontend**
-   ```bash
-   cd app
-   vercel deploy --prod --scope=your-vercel-username
-   ```
-   or:
-   ```bash
-   vercel --cwd app deploy --prod --scope=your-vercel-username
-   ```
-
-   This deploys the `app/` folder as a static web app.
+   - Vercel will run `pnpm exec expo export --platform web`.
+   - The frontend deploy serves the generated `dist/` output.
    You'll get a URL like: `https://your-app.vercel.app`
 
 4. **Verify frontend can call backend**
@@ -108,8 +100,8 @@ This separation provides:
 - Check `server/_core/index.ts` CORS middleware
 
 **"Cannot GET /page"**
-- `app/vercel.json` SPA rewrite may not be configured correctly
-- Verify web build output is available at the deployed site
+- Confirm the deployment is using the repository root and serving the `dist/` export
+- Check the Vercel build logs to confirm `expo export` completed successfully
 
 ## Part 3: Environment Variables Checklist
 
@@ -215,5 +207,5 @@ If something breaks after deploy:
 
 ## Notes
 
-- Root `vercel.json` is intentionally removed from this repo to avoid accidental backend deployment via Vercel.
+- Root `vercel.json` is the source of truth for the frontend deployment.
 - Use Railway for backend and Vercel only for frontend web hosting.

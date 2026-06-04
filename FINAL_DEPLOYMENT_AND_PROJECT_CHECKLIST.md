@@ -19,16 +19,17 @@ This file captures the final deployment checklist for `pipeline_pro` and the hig
 - [ ] Confirm CORS works for the frontend origin
 
 ### Frontend (Vercel / Expo web)
-- [ ] Deploy the frontend from `app/`
+- [ ] Deploy the frontend from the repository root
 - [ ] Set `EXPO_PUBLIC_API_BASE_URL` in Vercel:
   - `https://<railway-backend>.railway.app/api/trpc`
-- [ ] Confirm `app/vercel.json` is used only for frontend hosting
+- [ ] Confirm the root `vercel.json` serves the frontend export from `dist`
 - [ ] Verify frontend API calls reach the Railway backend
 - [ ] Confirm any client-side env vars are `EXPO_PUBLIC_*`
 
 ### Local Validation
 - [ ] Run `pnpm dev` and verify the full local app starts cleanly
 - [ ] Run `pnpm build` and `pnpm start` for backend locally
+- [ ] Run `pnpm exec expo export --platform web` and confirm `dist/` is generated
 - [ ] Confirm the frontend can communicate with the backend in local mode
 - [ ] Confirm `pnpm db:push` runs successfully for migrations
 
